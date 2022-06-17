@@ -1,6 +1,8 @@
 using Approval_management.DataModel.Entities;
 using Approval_management.DataModel.Repository;
 using Approval_management.DataModel.Repository.Interface;
+using Approval_management.Extensions;
+using Approval_management.Mapper;
 using Approval_management.Services;
 using Approval_management.Services.Interface;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +35,12 @@ namespace Approval_management
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IRequestRepository, RequestRepository>();
-            services.AddScoped<IRequestDetailService, RequestDetailService>();
+            //services.AddScoped<IRequestRepository, RequestRepository>();
+            //services.AddScoped<IRequestDetailService, RequestDetailService>();
+            //services.AddScoped<IUserInfoRepository, UserInfoRepository>();
+            //services.AddScoped<IUserInfoService, UserInfoService>();
+            //services.AddAutoMapper(typeof(ProfileMapper));
+            services.ConfigureDomainServices(Configuration);
             services.AddDbContext<BudgetRequestContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefautConnection"]));
             services.AddControllers();
             services.AddSwaggerGen(c =>
