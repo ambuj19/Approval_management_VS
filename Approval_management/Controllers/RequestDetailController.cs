@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 using Approval_management.Services.Interface;
 using Approval_management.DataModel.Entities;
+using Approval_management.DataModel.DTO;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Approval_management.Controllers
 {
@@ -16,22 +19,26 @@ namespace Approval_management.Controllers
     public class RequestDetailController : ControllerBase
     {
         private readonly IRequestDetailService _context;
-
-        public RequestDetailController(IRequestDetailService Request_DetailService)
+        private readonly IMapper _mapper;
+        public RequestDetailController(IRequestDetailService Request_DetailService, IMapper mapper)
         {
             _context = Request_DetailService;
+            _mapper = mapper;
         }
 
         // GET: api/Books
         [HttpGet]
         //[Route("api/Requests")]
-        public ActionResult<IEnumerable<RequestDetail>> GetAllRequest()
+        public ActionResult<List<RequestDetailDto>> GetAllRequest()
         {
-            return _context.GetAllRequest();
+            var user= _context.GetAllRequest();
+            var mappingResponse = _mapper.Map<List<RequestDetailDto>>(user);
+            return mappingResponse;
         }
 
 
         //GET: api/RequestDetail/5
+        [Authorize]
         [HttpGet("{id}")]
         public  ActionResult<IEnumerable<RequestDetail>>GetRequestbyID(int id)
         {

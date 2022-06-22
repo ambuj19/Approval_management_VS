@@ -13,9 +13,29 @@ namespace Approval_management.Services
             _request = UserInfo_RequestContext;
         }
 
+        public UserInfo AuthenticateUser(UserInfo loginCredentials)
+        {
+            return _request.AuthenticateUser(loginCredentials);
+        }
+
+        public bool CheckUserAvailabity(string userName)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<UserInfo> GetAllUserInfo()
         {
           return _request.GetAllUserInfo();
+        }
+
+        public bool isUserExists(int userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int RegisterUser(UserInfo userData)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

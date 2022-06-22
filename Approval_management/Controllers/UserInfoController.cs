@@ -2,6 +2,7 @@
 using Approval_management.DataModel.Entities;
 using Approval_management.Services.Interface;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -21,6 +22,7 @@ namespace Approval_management.Controllers
         }
 
         // GET: api/Books
+        [Authorize]
         [HttpGet]
         //[Route("api/Requests")]
         public ActionResult<List<UserInfoDto>> GetAllRequest()

@@ -10,5 +10,10 @@ namespace Approval_management.DataModel.Repository.Interface
     public interface IUserInfoRepository
     {
         List<UserInfo> GetAllUserInfo();
+        UserInfo AuthenticateUser(UserInfo loginCredentials);
+        int RegisterUser(UserInfo userData);
+        bool CheckUserAvailabity(string userName);
+
+        bool isUserExists(int userId);
     }
 }

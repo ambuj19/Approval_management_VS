@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Approval_management", "Approval_management\Approval_management.csproj", "{19A603F8-6E2C-4743-93E8-BF55E221C8AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Approval_management.DataModel", "Approval_management.DataModel\Approval_management.DataModel.csproj", "{9B2B9554-E756-432F-8371-F81C605DBC94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Approval_management.DataModel", "Approval_management.DataModel\Approval_management.DataModel.csproj", "{9B2B9554-E756-432F-8371-F81C605DBC94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Approval_management.Services", "Approval_management.Services\Approval_management.Services.csproj", "{7D30311C-9342-4DB0-AAF4-2A34B0B60395}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{9B2B9554-E756-432F-8371-F81C605DBC94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2B9554-E756-432F-8371-F81C605DBC94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B2B9554-E756-432F-8371-F81C605DBC94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D30311C-9342-4DB0-AAF4-2A34B0B60395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D30311C-9342-4DB0-AAF4-2A34B0B60395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D30311C-9342-4DB0-AAF4-2A34B0B60395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D30311C-9342-4DB0-AAF4-2A34B0B60395}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,7 @@ namespace Approval_management.Mapper
         public ProfileMapper()
         {
             CreateMap<UserInfo, UserInfoDto>().ReverseMap();
+            CreateMap<RequestDetail, RequestDetailDto>().ReverseMap();
         }
     }
 }
