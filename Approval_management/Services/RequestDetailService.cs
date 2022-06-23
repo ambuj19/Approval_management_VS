@@ -2,6 +2,7 @@
 using Approval_management.DataModel.Repository.Interface;
 using Approval_management.Services.Interface;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Approval_management.Services
 {
@@ -12,11 +13,11 @@ namespace Approval_management.Services
         {
             _request = budget_RequestContext;
         }
-        public List<RequestDetail> GetAllRequest()
+        public Task< List<RequestDetail>> GetAllRequest()
         {
             return _request.GetAllRequest();
         }
-        public List<RequestDetail> GetRequestbyID(int id)
+        public Task< List<RequestDetail>> GetRequestbyID(int id)
         {
             return _request.GetRequestbyID(id);
         }

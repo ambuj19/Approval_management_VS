@@ -1,5 +1,6 @@
-﻿using Approval_management.DataModel.DTO;
+﻿
 using Approval_management.DataModel.Entities;
+using Approval_management.ServiceModel.DTO.Request;
 using AutoMapper;
 
 namespace Approval_management.Mapper

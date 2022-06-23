@@ -1,5 +1,7 @@
-﻿using Approval_management.DataModel.Entities;
+﻿using Approval_management.DataModel.Email;
+using Approval_management.DataModel.Entities;
 using Approval_management.DataModel.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +17,22 @@ namespace Approval_management.DataModel.Repository
         {
             _context = budget_RequestContext;
         }
-        public List<RequestDetail> GetAllRequest()
+        public async Task< List<RequestDetail>> GetAllRequest()
         {
-           return _context.RequestDetails.ToList();
+           return await _context.RequestDetails.ToListAsync();
         }
-        public RequestDetail GetRequest(int id)
+        public  RequestDetail GetRequest(int id)
         {
-            return _context.RequestDetails.FirstOrDefault(x=>x.RequestId==id);
+            return  _context.RequestDetails.FirstOrDefault(x=>x.RequestId==id);
         }
-        public List<RequestDetail> GetRequestbyID(int id)
+        public async Task<List<RequestDetail>> GetRequestbyID(int id)
         {
-            return _context.RequestDetails.Where(x=>x.UserId == id).ToList();
+            return await _context.RequestDetails.Where(x=>x.UserId == id).ToListAsync();
         }
         public int AddRequest(RequestDetail request)
         {
             _context.RequestDetails.Add(request);
+            Emailnotification.EmailNotification();
             _context.SaveChanges();
             return 1;
         }

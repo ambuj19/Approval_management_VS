@@ -20,6 +20,7 @@ namespace Approval_management.Extensions
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
             services.AddScoped<IUserInfoService, UserInfoService>();
             services.AddAutoMapper(typeof(ProfileMapper));
+            
             services.AddScoped<ITokenService, TokenService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => options.TokenValidationParameters =

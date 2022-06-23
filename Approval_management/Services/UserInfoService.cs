@@ -2,6 +2,7 @@
 using Approval_management.DataModel.Repository.Interface;
 using System.Collections.Generic;
 using Approval_management.DataModel.Entities;
+using Approval_management.ServiceModel.DTO.Request;
 
 namespace Approval_management.Services
 {
@@ -13,7 +14,7 @@ namespace Approval_management.Services
             _request = UserInfo_RequestContext;
         }
 
-        public UserInfo AuthenticateUser(UserInfo loginCredentials)
+        public UserInfo AuthenticateUser(LoginDetailsDto loginCredentials)
         {
             return _request.AuthenticateUser(loginCredentials);
         }

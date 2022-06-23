@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Approval_management.DataModel\Approval_management.DataModel.csproj" />
+    <ProjectReference Include="..\Approval_management.ServiceModel\Approval_management.ServiceModel.csproj" />
   </ItemGroup>
 
 </Project>

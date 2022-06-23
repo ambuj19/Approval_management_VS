@@ -1,4 +1,6 @@
 ﻿using Approval_management.DataModel.Entities;
+using Approval_management.ServiceModel.DTO.Request;
+
 using Approval_management.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +9,7 @@ namespace Approval_management.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController: ControllerBase
+    public class LoginController : ControllerBase
     {
         readonly IUserInfoService _userService;
         private readonly IConfiguration _config;
@@ -19,7 +21,7 @@ namespace Approval_management.Controllers
             _tokenService = tokenService;
         }
         [HttpPost]
-        public IActionResult Login([FromBody] UserInfo login)
+        public IActionResult Login([FromBody] LoginDetailsDto login)
         {
             IActionResult response = Unauthorized();
             UserInfo user = _userService.AuthenticateUser(login);
@@ -37,5 +39,5 @@ namespace Approval_management.Controllers
             return response;
         }
     }
-    
+
 }

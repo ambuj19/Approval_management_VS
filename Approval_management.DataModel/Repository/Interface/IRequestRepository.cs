@@ -9,9 +9,9 @@ namespace Approval_management.DataModel.Repository.Interface
 {
     public interface IRequestRepository
     {
-        List<RequestDetail> GetAllRequest();
-        List<RequestDetail> GetRequestbyID(int id);
-        RequestDetail GetRequest(int id);
+       Task< List<RequestDetail>> GetAllRequest();
+      Task< List<RequestDetail>> GetRequestbyID(int id);
+      RequestDetail GetRequest(int id);
        int AddRequest(RequestDetail request);
         RequestDetail UpdateRequest(RequestDetail request);
         int DeleteRequest(int id);

@@ -1,5 +1,6 @@
 ﻿using Approval_management.DataModel.Entities;
 using Approval_management.DataModel.Repository.Interface;
+using Approval_management.ServiceModel.DTO.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Approval_management.DataModel.Repository
             _context = UserInfo_RequestContext;
         }
 
-        public UserInfo AuthenticateUser(UserInfo loginCredentials)
+        public UserInfo AuthenticateUser(LoginDetailsDto loginCredentials)
         {
             UserInfo userMaster = new UserInfo();
             var userDetails = _context.UserInfos.FirstOrDefault(u => u.UserName == loginCredentials.UserName
