@@ -1,5 +1,4 @@
 ﻿using Approval_management.DataModel.Entities;
-using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,12 +6,16 @@ namespace Approval_management.Services.Interface
 {
     public interface IRequestDetailService
     {
-       Task< List<RequestDetail> >GetAllRequest();
-       Task< List<RequestDetail>> GetRequestbyID(int id);
-      int AddRequest(RequestDetail request);
-        RequestDetail UpdateRequest(RequestDetail request);
-
+        Task<List<RequestDetail>> GetAllRequest();
+        Task<List<RequestDetail>> GetRequestbyID(int id);
+        RequestDetail GetRequest(int id);
+        Task<RequestDetail> AddRequest(RequestDetail request);
+        Task<int> UpdateRequest(RequestDetail request);
+        Task<List<RequestDetail>> Managerlogin(int id);
+        Task<List<RequestDetail>> RequestStatus(int id, int status);
+        Task<int> changeStatus(int id, int status);
+        Task<int> RejectionCommentByManager(int Id, string Comment);
         int DeleteRequest(int id);
-    
+
     }
 }

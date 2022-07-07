@@ -1,15 +1,15 @@
 ﻿using Approval_management.DataModel.Entities;
 using Approval_management.DataModel.Repository.Interface;
 using Approval_management.ServiceModel.DTO.Request;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Approval_management.DataModel.Repository
 {
-    public class UserInfoRepository: IUserInfoRepository
+    public class UserInfoRepository : IUserInfoRepository
     {
         private readonly BudgetRequestContext _context;
         public UserInfoRepository(BudgetRequestContext UserInfo_RequestContext)
@@ -29,7 +29,9 @@ namespace Approval_management.DataModel.Repository
                 {
                     UserName = userDetails.UserName,
                     UserId = userDetails.UserId,
-                  
+                    ManagerId = userDetails.ManagerId,
+                    IsManager=userDetails.IsManager,
+
                 };
 
                 return user;
@@ -44,6 +46,11 @@ namespace Approval_management.DataModel.Repository
         public bool CheckUserAvailabity(string userName)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<UserInfo>> GetUserbyID(int id)
+        {
+            return await _context.UserInfos.Where(x => x.UserId == id).ToListAsync();
         }
 
         public bool isUserExists(int userId)

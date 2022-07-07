@@ -19,6 +19,8 @@ namespace Approval_management.Extensions
             services.AddScoped<IRequestDetailService, RequestDetailService>();
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
             services.AddScoped<IUserInfoService, UserInfoService>();
+            services.AddScoped<IForwardRequestService, ForwardRequestService>();
+            services.AddScoped<IForwardRequest, ForwardRequest>();
             services.AddAutoMapper(typeof(ProfileMapper));
             
             services.AddScoped<ITokenService, TokenService>();

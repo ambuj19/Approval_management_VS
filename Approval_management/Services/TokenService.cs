@@ -25,7 +25,8 @@ namespace Approval_management.Services
             var claim = new List<Claim>()
             {
                 new Claim(JwtRegisteredClaimNames.Sub, userInfo.UserName),
-              new Claim("userid", userInfo.UserId.ToString(CultureInfo.InvariantCulture)),
+              new Claim("userid", userInfo.UserId.ToString(CultureInfo.InvariantCulture))
+              // new Claim("ManagerId", userInfo.ManagerId.ToString(CultureInfo.InvariantCulture)),
             };
             var credential = new SigningCredentials(_symmetricSecurityKey, SecurityAlgorithms.HmacSha512Signature);
             var tokenDescriptor = new SecurityTokenDescriptor

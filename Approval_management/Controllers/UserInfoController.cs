@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Approval_management.Controllers
 {
@@ -34,28 +35,12 @@ namespace Approval_management.Controllers
         }
 
         // GET: UserInfo/Details/5
-        //    public async Task<IActionResult> Details(int? id)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        var userInfo = await _context.UserInfos
-        //            .FirstOrDefaultAsync(m => m.UserId == id);
-        //        if (userInfo == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        return View(userInfo);
-        //    }
-
-        //    // GET: UserInfo/Create
-        //    public IActionResult Create()
-        //    {
-        //        return View();
-        //    }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<UserInfo>>> GetUserbyID(int id)
+        {
+            var req = await _context.GetUserbyID(id);
+            return req;
+        }
 
         //    // POST: UserInfo/Create
         //    // To protect from overposting attacks, enable the specific properties you want to bind to.

@@ -3,6 +3,7 @@ using Approval_management.DataModel.Repository.Interface;
 using System.Collections.Generic;
 using Approval_management.DataModel.Entities;
 using Approval_management.ServiceModel.DTO.Request;
+using System.Threading.Tasks;
 
 namespace Approval_management.Services
 {
@@ -27,6 +28,11 @@ namespace Approval_management.Services
         public List<UserInfo> GetAllUserInfo()
         {
           return _request.GetAllUserInfo();
+        }
+
+        public Task<List<UserInfo>> GetUserbyID(int id)
+        {
+            return _request.GetUserbyID(id);
         }
 
         public bool isUserExists(int userId)

@@ -2,10 +2,8 @@
 using Approval_management.DataModel.Entities;
 using Approval_management.DataModel.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Approval_management.DataModel.Repository
@@ -17,30 +15,30 @@ namespace Approval_management.DataModel.Repository
         {
             _context = budget_RequestContext;
         }
-        public async Task< List<RequestDetail>> GetAllRequest()
+        public async Task<List<RequestDetail>> GetAllRequest()
         {
-           return await _context.RequestDetails.ToListAsync();
+            return await _context.RequestDetails.ToListAsync();
         }
-        public  RequestDetail GetRequest(int id)
+        public RequestDetail GetRequest(int id)
         {
-            return  _context.RequestDetails.FirstOrDefault(x=>x.RequestId==id);
+            return  _context.RequestDetails.FirstOrDefault(x => x.RequestId == id);
         }
         public async Task<List<RequestDetail>> GetRequestbyID(int id)
         {
-            return await _context.RequestDetails.Where(x=>x.UserId == id).ToListAsync();
+            return await _context.RequestDetails.Where(x => x.UserId == id).ToListAsync();
         }
-        public int AddRequest(RequestDetail request)
+        public async Task<RequestDetail> AddRequest(RequestDetail request)
         {
             _context.RequestDetails.Add(request);
             Emailnotification.EmailNotification();
-            _context.SaveChanges();
-            return 1;
+            await _context.SaveChangesAsync();
+            return request;
         }
-        public RequestDetail UpdateRequest(RequestDetail request)
+        public async Task<int> UpdateRequest(RequestDetail request)
         {
             _context.RequestDetails.Update(request);
-            _context.SaveChanges();
-            return null;
+            await _context.SaveChangesAsync();
+            return 1;
         }
         public int DeleteRequest(int id)
         {
@@ -52,6 +50,32 @@ namespace Approval_management.DataModel.Repository
                 return 1;
             }
             return 0;
+        }
+
+        public async Task<List<RequestDetail>> Managerlogin(int id)
+        {
+           return await _context.RequestDetails.Where(x=>x.ManagerId==id).ToListAsync();
+        }
+
+        public async Task<List<RequestDetail>> RequestStatus(int id,int status)
+        {
+            return await _context.RequestDetails.Where(x => x.UserId == id && x.RequestStatus == status).ToListAsync();
+        }
+
+        public async Task<int> changeStatus(int id, int status)
+        {
+            var requestDetail = new RequestDetail { RequestId = id, RequestStatus = status };
+            _context.RequestDetails.Attach(requestDetail).Property(x => x.RequestStatus).IsModified = true;
+            await _context.SaveChangesAsync();
+            return 1;
+        }
+
+        public async Task<int> RejectionCommentByManager(int Id, string Comment)
+        {
+            var requestDetail = new RequestDetail { RequestId = Id, Comments = Comment };
+            _context.RequestDetails.Attach(requestDetail).Property(x => x.Comments).IsModified = true;
+            await _context.SaveChangesAsync();
+            return 1;
         }
     }
 }

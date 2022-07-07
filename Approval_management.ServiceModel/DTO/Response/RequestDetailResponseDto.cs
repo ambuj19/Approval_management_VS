@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace Approval_management.DataModel.Entities
+namespace Approval_management.ServiceModel.DTO.Response
 {
-    public partial class RequestDetail
+    public class RequestDetailResponseDto
     {
-        public RequestDetail()
-        {
-            ForwordedRequestDetails = new HashSet<ForwordedRequestDetail>();
-        }
-
         public int RequestId { get; set; }
         public int? UserId { get; set; }
         public int? ManagerId { get; set; }
@@ -22,9 +18,5 @@ namespace Approval_management.DataModel.Entities
         public DateTime? RequestDate { get; set; }
         public int? RequestStatus { get; set; }
         public string Comments { get; set; }
-        public bool? IsDeleted { get; set; }
-
-        public virtual UserInfo User { get; set; }
-        public virtual ICollection<ForwordedRequestDetail> ForwordedRequestDetails { get; set; }
     }
 }

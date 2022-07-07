@@ -17,6 +17,7 @@ namespace Approval_management.DataModel.Entities
         {
         }
 
+        public virtual DbSet<ForwordedRequestDetail> ForwordedRequestDetails { get; set; }
         public virtual DbSet<RequestDetail> RequestDetails { get; set; }
         public virtual DbSet<UserInfo> UserInfos { get; set; }
 
@@ -24,14 +25,49 @@ namespace Approval_management.DataModel.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=INDBANL024;Initial Catalog=BudgetRequest;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Name=DefautConnection");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<ForwordedRequestDetail>(entity =>
+            {
+                entity.HasKey(e => e.ForwordedRequestId)
+                    .HasName("PK__Forworde__D9BD5F08E31BF770");
+
+                entity.ToTable("ForwordedRequestDetail");
+
+                entity.Property(e => e.AdvAmount).HasColumnName("Adv_Amount");
+
+                entity.Property(e => e.Comments).HasMaxLength(200);
+
+                entity.Property(e => e.Description).HasMaxLength(200);
+
+                entity.Property(e => e.EstAmount).HasColumnName("Est_Amount");
+
+                entity.Property(e => e.Purpose)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RequestDate).HasColumnType("date");
+
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Request)
+                    .WithMany(p => p.ForwordedRequestDetails)
+                    .HasForeignKey(d => d.RequestId)
+                    .HasConstraintName("FK__Forworded__Reque__36B12243");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ForwordedRequestDetails)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Forworded__UserI__37A5467C");
+            });
 
             modelBuilder.Entity<RequestDetail>(entity =>
             {

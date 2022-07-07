@@ -5,15 +5,13 @@ using System.Collections.Generic;
 
 namespace Approval_management.DataModel.Entities
 {
-    public partial class RequestDetail
+    
+    public partial class ForwordedRequestDetail
     {
-        public RequestDetail()
-        {
-            ForwordedRequestDetails = new HashSet<ForwordedRequestDetail>();
-        }
-
-        public int RequestId { get; set; }
+        public int ForwordedRequestId { get; set; }
+        public int? RequestId { get; set; }
         public int? UserId { get; set; }
+        public int? SuperManagerId { get; set; }
         public int? ManagerId { get; set; }
         public string Purpose { get; set; }
         public string Description { get; set; }
@@ -24,7 +22,7 @@ namespace Approval_management.DataModel.Entities
         public string Comments { get; set; }
         public bool? IsDeleted { get; set; }
 
+        public virtual RequestDetail Request { get; set; }
         public virtual UserInfo User { get; set; }
-        public virtual ICollection<ForwordedRequestDetail> ForwordedRequestDetails { get; set; }
     }
 }

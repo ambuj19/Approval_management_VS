@@ -12,7 +12,7 @@ namespace Approval_management.DataModel.Email
     {
         public static string EmailNotification()
         {
-            MailMessage message = new MailMessage("ambujlaala092@gmail.com", "ambujsrivastava092@gmail.com");
+            MailMessage message = new MailMessage("ambujlaala092@gmail.com", "kumar.ambuj@euromonitor.com");
             message.Subject = "New request from employee";
             message.Body = "You have request for approval";
 
@@ -24,7 +24,7 @@ namespace Approval_management.DataModel.Email
 
             System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
             credential.UserName = "ambujlaala092@gmail.com";
-            credential.Password = "Ambuj@1997";
+            credential.Password = "tfrqcgdfcgyhhedo";
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = credential;
 
